@@ -23,6 +23,9 @@ mongoose.connect(process.env.DB_CONNECT, connectionParams)
         console.log("error: " + err);
     })
 
+
+
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use('/', router)

@@ -24,13 +24,21 @@ const newComment = async (req, res) => {
                 
             }
 
-            await savedPost.updateOne({ _id: commentUpdated.savedPostId }, { $set: { comments: [] } })
-            await savedPost.save();
-            await savedPost.updateOne({ _id: commentUpdated.savedPostId }, { $set: { comments: savedPost._doc.comments } })
-            await savedPost.save();
-            
+
+            Post.findById(savedPost._id, (err, post) =>{
+                
+                const existedComment = post.comments.findIndex(x => x.commentId === commentUpdated.commentId);
+                if(existedComment > -1){
+                    post.comments[existedComment] = commentUpdated;    
+                }else{
+                    post.comments.push(commentUpdated);
+                }
+                
+                post.save()
+                res.status(200).json( post.comments);
+            });    
         }
-        res.status(200).json( savedPost._doc.comments)
+      
     } catch (err) {
         res.status(500).json({ "error": err.message })
     }
