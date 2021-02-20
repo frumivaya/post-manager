@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+       {
+            "name": "ServerDev",
+            "request": "launch",
+            "runtimeArgs": [
+                "run-script",
+                "dev"
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+            "cwd": "${workspaceFolder}\\server"
+        }
+    ]
+}
