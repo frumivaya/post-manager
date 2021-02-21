@@ -55,7 +55,6 @@ class Posts extends Component {
                         {pagesButtonsRender}
                     </ul>
                 </nav>
-
             </div>
         )
     }
